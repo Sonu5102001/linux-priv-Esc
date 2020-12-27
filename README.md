@@ -113,7 +113,7 @@ uid=0(root) gid=0(root) groups=0(root)
 	
 Slides of the presentation : https://github.com/nongiach/sudo_inject/blob/master/slides_breizh_2019.pdf  
 
-
+ 
 # Writabe /etc/passwd
 If we have permission to write a passwd file in linux then generate password from this command.  
 
