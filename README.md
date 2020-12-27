@@ -1,4 +1,5 @@
-# linux-priv-Esc
+# linux-privilege-Esclate
+# Simple technique to esclate privilege
 
 # GTFOBinn
 https://gtfobins.github.io
