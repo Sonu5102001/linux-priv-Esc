@@ -1,26 +1,26 @@
 # linux-priv-Esc
 
-# GTFOBins  
+# GTFOBinn
 https://gtfobins.github.io
 
 
 # Initial Enumeration
 uname -a, netstat -ano, history
 
-# Automated tools 
+# Automated tools
 1) Linux-Exploit-Suggester  https://github.com/mzet-/linux-exploit-suggester
 2) Linux-Privilege-Script https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
 3) Linux-Enumeration https://github.com/rebootuser/LinEnum
 
 
-# Kernal-Exploit  
+# Kernal-Exploit
 
 1) CVE-2016-5195 (DirtyCow)  
 Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8  
-Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c  
+Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c
 
 compile:- gcc -pthread dirty.c -o dirty -lcrypt  
-Time to execute:- "./dirty" or "./dirty my-new-password"  
+Time to execute:- "./dirty" or "./dirty my-new-password"
 
 2) CVE-2010-3904 (RDS)  
 Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8  
