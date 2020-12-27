@@ -1,10 +1,6 @@
 # linux-privilege-Esclate
 # Simple technique to esclate privilege
 
-# GTFOBinn
-https://gtfobins.github.io
-
-
 # Initial Enumeration
 uname -a, netstat -ano, history
 
@@ -72,6 +68,10 @@ find / -name id_rsa 2> /dev/null
 # SUDO
 * NOPASSWD Sudo configuration might allow a user to execute some command with another user privileges without knowing the password.*  
 $ sudo -l
+
+# GTFOBinn
+https://gtfobins.github.io
+
 
 # LD_PRELOAD and NOPASSWD
 If LD_PRELOAD is explicitly defined in the sudoers file
