@@ -15,9 +15,9 @@ uname -a, netstat -ano, history
 
 # Kernal-Exploit
 
-1) CVE-2016-5195 (DirtyCow)  
+1) CVE-2016-5195 (DirtyCow)
 Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8  
-Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c
+Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c  
 
 compile:- gcc -pthread dirty.c -o dirty -lcrypt  
 Time to execute:- "./dirty" or "./dirty my-new-password"
