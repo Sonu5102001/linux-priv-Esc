@@ -39,7 +39,7 @@ https://www.exploit-db.com/exploits/18411
 
 # Weak File Permission 
 
-ls -l | grep shadow
+ls -l | grep shadow \n
 ls -l | grep passwd
 
 # File Containing Password
