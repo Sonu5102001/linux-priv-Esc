@@ -3,10 +3,9 @@
 # GTFOBins  
 https://gtfobins.github.io
 
-018 
 
 # Initial Enumeration
-uname -a, netstat -ano
+uname -a, netstat -ano, history
 
 # Automated tools 
 1) Linux-Exploit-Suggester  https://github.com/mzet-/linux-exploit-suggester
@@ -38,4 +37,40 @@ Linux Kernel 2.6.39 < 3.2.2 (Gentoo / Ubuntu x86/x64)
 https://www.exploit-db.com/exploits/18411
 
 
-File-Permission => search for weak file permission 
+# Weak File Permission 
+
+ls -l | grep shadow
+ls -l | grep passwd
+
+# File Containing Password
+
+grep --color=auto -rnw '/' -ie "PASSWORD" --color=always 2> /dev/null
+find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \;
+
+# Old passwords in /etc/security/opasswd
+
+/etc/security/opasswd 
+
+
+# Last edited files
+*Files that were edited in the last 10 minutes*
+
+find / -mmin -10 2>/dev/null | grep -Ev "^/proc"
+
+# In memory passwords
+strings /dev/mem -n10 | grep -i PASS
+
+# Find sensitive files
+$ locate password | more           
+/boot/grub/i386-pc/password.mod
+/etc/pam.d/common-password
+/etc/pam.d/gdm-password
+/etc/pam.d/gdm-password.original
+/lib/live/config/0031-root-password
+
+# SSH Key
+
+*Sensitive files*
+
+find / -name authorized_keys 2> /dev/null
+find / -name id_rsa 2> /dev/null
