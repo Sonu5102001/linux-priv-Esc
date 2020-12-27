@@ -14,9 +14,8 @@ uname -a, netstat -ano, history
 
 1) CVE-2016-5195 (DirtyCow)
 Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8  
-Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c
-
-compile:- gcc -pthread dirty.c -o dirty -lcrypt
+Code: https://github.com/FireFart/dirtycow/blob/master/dirty.c  
+compile:- gcc -pthread dirty.c -o dirty -lcrypt  
 Time to execute:- "./dirty" or "./dirty my-new-password"
 
 2) CVE-2010-3904 (RDS)  
@@ -97,15 +96,8 @@ CVE-2019-14287 is a vulnerability found in the Unix Sudo program by a researcher
 Joe Vennix found that if you specify a UID of -1 (or its unsigned equivalent: 4294967295), Sudo would incorrectly read this as being 0 (i.e. root). This means that by specifying a UID of -1 or 4294967295, you can execute a command as root, despite being explicitly prevented from doing so. It is worth noting that this will only work if you've been granted non-root sudo permissions for the command, as in the configuration above.  
 
 Practically, the application of this is as follows: sudo -u#<id> <command>  
-E.g sudo -u#-1 whoami
+E.g sudo -u#-1 whoami  
 
-$ sudo whatever
-
-[sudo] password for user:  
-
-# Press <ctrl>+c since you don't have the password.  
-
- 
 # Writabe /etc/passwd
 If we have permission to write a passwd file in linux then generate password from this command.  
 
