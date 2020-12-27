@@ -39,12 +39,14 @@ https://www.exploit-db.com/exploits/18411
 
 # Weak File Permission 
 
-ls -l | grep shadow \n
+ls -l | grep shadow 
+
 ls -l | grep passwd
 
 # File Containing Password
 
 grep --color=auto -rnw '/' -ie "PASSWORD" --color=always 2> /dev/null
+
 find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \;
 
 # Old passwords in /etc/security/opasswd
