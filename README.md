@@ -91,8 +91,13 @@ void _init() {
 }  
 Execute any binary with the LD_PRELOAD to spawn a shell : sudo LD_PRELOAD=<full_path_to_.so_file> <program>, e.g: sudo LD_PRELOAD=/tmp/shell.so whoami  
 
-# sudo_inject
-Using https://github.com/nongiach/sudo_inject  
+# Security bypass CVE-2019-14287
+CVE-2019-14287 is a vulnerability found in the Unix Sudo program by a researcher working for Apple: Joe Vennix. This exploit present in older versions of Sudo (versions < 1.8.28).
+
+Joe Vennix found that if you specify a UID of -1 (or its unsigned equivalent: 4294967295), Sudo would incorrectly read this as being 0 (i.e. root). This means that by specifying a UID of -1 or 4294967295, you can execute a command as root, despite being explicitly prevented from doing so. It is worth noting that this will only work if you've been granted non-root sudo permissions for the command, as in the configuration above.  
+
+Practically, the application of this is as follows: sudo -u#<id> <command>  
+E.g sudo -u#-1 whoami
 
 $ sudo whatever
 
